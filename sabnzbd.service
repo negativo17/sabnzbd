@@ -1,0 +1,11 @@
+[Unit]
+Description=The automated Usenet download tool
+
+[Service]
+ExecStart=/usr/bin/python2 /usr/share/sabnzbd/SABnzbd.py --config-file=/etc/sabnzbd/config.ini -s 0.0.0.0
+GuessMainPID=no
+User=sabnzbd
+Group=sabnzbd
+
+[Install]
+WantedBy=multi-user.target

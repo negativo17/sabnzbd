@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>sabnzbd</short>
+  <description>The automated Usenet download tool</description>
+  <port protocol="tcp" port="8085"/>
+</service>
