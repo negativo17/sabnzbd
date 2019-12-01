@@ -24,6 +24,7 @@ Requires(post): firewalld-filesystem
 Requires:       par2cmdline
 Requires:       python2
 Requires:       python2-sabyenc >= 3.3.5
+Requires:       rar
 Requires(pre):  shadow-utils
 
 %if 0%{?fedora} || 0%{?rhel} >= 8
