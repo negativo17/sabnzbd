@@ -16,7 +16,6 @@ Source10:       %{name}.service
 Source11:       %{name}.xml
 
 BuildRequires:  firewalld-filesystem
-BuildRequires:  python2-tools
 BuildRequires:  systemd
 BuildRequires:  tar
 
@@ -44,11 +43,7 @@ Plex Media Server.
 %prep
 %autosetup -n %{name}-%{version}
 
-ln -sf %{_bindir}/msgfmt.py tools/msgfmt.py
-
 %install
-
-#%{__python} tools/make_mo.py
 
 mkdir -p %{buildroot}%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_prefix}/lib/firewalld/services/
