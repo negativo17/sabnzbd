@@ -16,6 +16,7 @@ Source10:       %{name}.service
 Source11:       %{name}.xml
 
 BuildRequires:  firewalld-filesystem
+BuildRequires:  python3
 BuildRequires:  systemd
 BuildRequires:  tar
 
