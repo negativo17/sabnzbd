@@ -4,13 +4,13 @@
 
 Name:           sabnzbd
 Version:        3.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
 BuildArch:      noarch
 
-Source0:        https://github.com/%{name}/%{name}/archive/%{version}Beta4.tar.gz#/%{name}-%{version}Beta4.tar.gz
+Source0:        https://github.com/%{name}/%{name}/archive/%{version}RC1.tar.gz#/%{name}-%{version}RC1.tar.gz
 Source1:        config.ini
 Source10:       %{name}.service
 Source11:       %{name}.xml
@@ -24,7 +24,7 @@ Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 Requires:       par2cmdline
 Requires:       python3
-Requires:       python3-chardeth
+Requires:       python3-chardet
 Requires:       python3-cheetah
 Requires:       python3-cherrypy
 Requires:       python3-configobj
@@ -46,7 +46,7 @@ zero human interaction. SABnzbd offers an easy setup wizard and has
 self-analysis tools to verify your setup.
 
 %prep
-%autosetup -n %{name}-%{version}Beta4
+%autosetup -n %{name}-%{version}RC1
 
 %build
 tools/make_mo.py
@@ -104,6 +104,10 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Sun Jun 28 2020 Simone Caronni <negativo17@gmail.com> - 3.0.0-3
+- Update to 3.0.0RC1.
+- Fix typo in requirements.
+
 * Mon Jun 22 2020 Simone Caronni <negativo17@gmail.com> - 3.0.0-2
 - Update to 3.0.0 Beta 4.
 - Fix requirements.
