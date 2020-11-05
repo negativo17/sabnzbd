@@ -94,7 +94,7 @@ exit 0
 
 %files -f SABnzbd.lang
 %license LICENSE.txt
-%doc README.md README.mkd ABOUT.txt
+%doc README.md README.mkd ISSUES.txt
 %attr(750,%{user},%{group}) %{_sharedstatedir}/%{name}
 %dir %attr(750,%{user},%{group}) %{_sysconfdir}/%{name}
 %config(noreplace) %attr(644,%{user},%{group}) %{_sysconfdir}/%{name}/config.ini
