@@ -3,7 +3,7 @@
 %global __python %{__python3}
 
 Name:           sabnzbd
-Version:        3.3.0
+Version:        3.3.1
 Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
@@ -104,6 +104,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Sun Jun 20 2021 Simone Caronni <negativo17@gmail.com> - 3.3.1-1
+- Update to 3.3.1.
+
 * Mon Jun 07 2021 Simone Caronni <negativo17@gmail.com> - 3.3.0-1
 - Update to 3.3.0.
 
