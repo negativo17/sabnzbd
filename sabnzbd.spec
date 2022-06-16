@@ -3,7 +3,7 @@
 %global __python %{__python3}
 
 Name:           sabnzbd
-Version:        3.5.3
+Version:        3.6.0
 Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
@@ -35,7 +35,7 @@ Requires:       python3-guessit
 Requires:       python3-notify2
 Requires:       python3-portend
 Requires:       python3-puremagic
-Requires:       python3-sabyenc
+Requires:       python3-sabyenc >= 5.4.2
 Requires:       rar
 Requires(pre):  shadow-utils
 
@@ -106,6 +106,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Thu Jun 16 2022 Simone Caronni <negativo17@gmail.com> - 3.6.0-1
+- Update to 3.6.0.
+
 * Thu Mar 24 2022 Simone Caronni <negativo17@gmail.com> - 3.5.3-1
 - Update to 3.5.3.
 
