@@ -1,5 +1,8 @@
 [Unit]
 Description=The automated Usenet download tool
+Documentation=https://sabnzbd.org/wiki/
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/python3 /usr/share/sabnzbd/SABnzbd.py --config-file=/etc/sabnzbd/config.ini -s 0.0.0.0

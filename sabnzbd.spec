@@ -2,8 +2,10 @@
 %global group %{name}
 %global __python %{__python3}
 
+%global desktop_id org.sabnzbd.sabnzbd
+
 Name:           sabnzbd
-Version:        3.7.0
+Version:        3.7.2
 Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
@@ -16,6 +18,7 @@ Source10:       %{name}.service
 Source11:       %{name}.xml
 
 BuildRequires:  firewalld-filesystem
+BuildRequires:  libappstream-glib
 BuildRequires:  python3
 BuildRequires:  systemd
 BuildRequires:  tar
@@ -55,25 +58,28 @@ tools/make_mo.py
 
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}
-mkdir -p %{buildroot}%{_prefix}/lib/firewalld/services/
-mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
-mkdir -p %{buildroot}%{_sysconfdir}/%{name}
 mkdir -p %{buildroot}%{_localstatedir}/log/%{name}
 
 cp -fr SABnzbd.py sabnzbd po interfaces icons email locale %{buildroot}%{_datadir}/%{name}
 
-install -m 0644 -p %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/config.ini
-install -m 0644 -p %{SOURCE10} %{buildroot}%{_unitdir}/%{name}.service
-install -m 0644 -p %{SOURCE11} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}.xml
+install -m 0644 -p -D %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/config.ini
+install -m 0644 -p -D %{SOURCE10} %{buildroot}%{_unitdir}/%{name}.service
+install -m 0644 -p -D %{SOURCE11} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}.xml
+install -m 0644 -p -D linux/sabnzbd.bash-completion %{buildroot}%{_sysconfdir}/bash_completion.d/sabnzbd
+install -m 0644 -p -D linux/%{desktop_id}.appdata.xml %{buildroot}%{_metainfodir}/%{desktop_id}.appdata.xml
 
 # Always invoke Python 3
 find %{buildroot} -name "*.py" -exec sed -i \
-    -e 's|/usr/bin/env python$|/usr/bin/env python3|g' {} \;
+    -e 's|/usr/bin/env python$|/usr/bin/python3|g' {} \;
 
 # rpmlint fixes
 find %{buildroot} \( -name "*.js" -o -name "*.css" -o -name "*.txt  " \) -exec chmod 644 {} \;
 chmod 755 $(grep -RH '/usr/bin/' %{buildroot}%{_datadir}/%{name} | cut -d: -f1)
+
+
+%check
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{desktop_id}.appdata.xml
 
 %find_lang SABnzbd
 
@@ -101,11 +107,19 @@ exit 0
 %dir %attr(750,%{user},%{group}) %{_sysconfdir}/%{name}
 %config(noreplace) %attr(644,%{user},%{group}) %{_sysconfdir}/%{name}/config.ini
 %{_datadir}/%{name}
+%{_metainfodir}/%{desktop_id}.appdata.xml
 %{_prefix}/lib/firewalld/services/%{name}.xml
+%{_sysconfdir}/bash_completion.d/sabnzbd
 %{_unitdir}/%{name}.service
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Mon Feb 06 2023 Simone Caronni <negativo17@gmail.com> - 3.7.2-1
+- Update to 3.7.2.
+- Add AppData information.
+- Add bash completion.
+- Expand systemd unit.
+
 * Sun Nov 06 2022 Simone Caronni <negativo17@gmail.com> - 3.7.0-1
 - Update to 3.7.0.
 
