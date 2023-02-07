@@ -79,7 +79,10 @@ chmod 755 $(grep -RH '/usr/bin/' %{buildroot}%{_datadir}/%{name} | cut -d: -f1)
 
 
 %check
+%if 0%{?fedora}
+# Url validator broken on el7, 8 and 9: https://bugzilla.redhat.com/show_bug.cgi?id=2119708
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{desktop_id}.appdata.xml
+%endif
 
 %find_lang SABnzbd
 
