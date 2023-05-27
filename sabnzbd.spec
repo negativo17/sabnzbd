@@ -1,6 +1,5 @@
 %global user %{name}
 %global group %{name}
-%global __python %{__python3}
 
 %global desktop_id org.sabnzbd.sabnzbd
 
@@ -38,6 +37,7 @@ Requires:       python3-guessit
 Requires:       python3-notify2
 Requires:       python3-portend
 Requires:       python3-puremagic
+Requires:       python3-sabctools
 Requires:       python3-sabyenc >= 5.4.4
 Requires:       rar
 Requires(pre):  shadow-utils
@@ -71,7 +71,7 @@ install -m 0644 -p -D linux/%{desktop_id}.appdata.xml %{buildroot}%{_metainfodir
 
 # Always invoke Python 3
 find %{buildroot} -name "*.py" -exec sed -i \
-    -e 's|/usr/bin/env python$|/usr/bin/python3|g' {} \;
+    -e 's|/usr/bin/env python.*|/usr/bin/python3|g' {} \;
 
 # rpmlint fixes
 find %{buildroot} \( -name "*.js" -o -name "*.css" -o -name "*.txt  " \) -exec chmod 644 {} \;
@@ -119,6 +119,7 @@ exit 0
 %changelog
 * Sat May 27 2023 Simone Caronni <negativo17@gmail.com> - 4.0.1-1
 - Update to 4.0.1.
+- Trim changelog.
 
 * Mon Feb 06 2023 Simone Caronni <negativo17@gmail.com> - 3.7.2-1
 - Update to 3.7.2.
@@ -146,61 +147,3 @@ exit 0
 
 * Fri Feb 04 2022 Simone Caronni <negativo17@gmail.com> - 3.5.0-1
 - Update to 3.5.0.
-
-* Thu Dec 16 2021 Simone Caronni <negativo17@gmail.com> - 3.4.2-2
-- Fix runtime requirements.
-
-* Fri Oct 15 2021 Simone Caronni <negativo17@gmail.com> - 3.4.2-1
-- Update to 3.4.2.
-
-* Fri Sep 24 2021 Simone Caronni <negativo17@gmail.com> - 3.4.1-1
-- Update to 3.4.1.
-
-* Mon Sep 20 2021 Simone Caronni <negativo17@gmail.com> - 3.4.0-1
-- Update to 3.4.0.
-
-* Sun Jun 20 2021 Simone Caronni <negativo17@gmail.com> - 3.3.1-1
-- Update to 3.3.1.
-
-* Mon Jun 07 2021 Simone Caronni <negativo17@gmail.com> - 3.3.0-1
-- Update to 3.3.0.
-
-* Wed May 05 2021 Simone Caronni <negativo17@gmail.com> - 3.2.1-1
-- Update to 3.2.1.
-
-* Sun Mar 07 2021 Simone Caronni <negativo17@gmail.com> - 3.2.0-1
-- Update to 3.2.0.
-
-* Tue Nov 17 2020 Simone Caronni <negativo17@gmail.com> - 3.1.1-1
-- Update to 3.1.1.
-
-* Thu Nov 05 2020 Simone Caronni <negativo17@gmail.com> - 3.1.0-1
-- Update to 3.1.0.
-
-* Tue Oct 06 2020 Simone Caronni <negativo17@gmail.com> - 3.0.2-1
-- Update to 3.0.2.
-
-* Tue Aug 25 2020 Simone Caronni <negativo17@gmail.com> - 3.0.1-1
-- Update to 3.0.1.
-
-* Sun Aug 16 2020 Simone Caronni <negativo17@gmail.com> - 3.0.0-4
-- Update to final 3.0.0.
-
-* Sun Jun 28 2020 Simone Caronni <negativo17@gmail.com> - 3.0.0-3
-- Update to 3.0.0RC1.
-- Fix typo in requirements.
-
-* Mon Jun 22 2020 Simone Caronni <negativo17@gmail.com> - 3.0.0-2
-- Update to 3.0.0 Beta 4.
-- Fix requirements.
-
-* Tue May 26 2020 Simone Caronni <negativo17@gmail.com> - 3.0.0-1
-- Update to 3.0.0 Alpha 2.
-- Fix description and summary.
-- Rpmling fixes.
-
-* Sun Dec 01 2019 Simone Caronni <negativo17@gmail.com> - 2.3.9-2
-- Add default configuration file.
-
-* Sun Nov 17 2019 Simone Caronni <negativo17@gmail.com> - 2.3.9-1
-- First build.
