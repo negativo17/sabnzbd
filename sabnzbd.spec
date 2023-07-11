@@ -4,7 +4,7 @@
 %global desktop_id org.sabnzbd.sabnzbd
 
 Name:           sabnzbd
-Version:        4.0.2
+Version:        4.0.3
 Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
@@ -117,6 +117,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Tue Jul 11 2023 Simone Caronni <negativo17@gmail.com> - 4.0.3-1
+- Update to 4.0.3.
+
 * Mon Jun 12 2023 Simone Caronni <negativo17@gmail.com> - 4.0.2-1
 - Update to 4.0.2.
 
