@@ -5,7 +5,7 @@
 
 Name:           sabnzbd
 Version:        4.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -25,19 +25,19 @@ BuildRequires:  tar
 Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 Requires:       par2cmdline
-Requires:       python3-chardet
-Requires:       python3-cheetah
-Requires:       python3-cheroot
-Requires:       python3-cherrypy
-Requires:       python3-configobj
-Requires:       python3-cryptography
-Requires:       python3-dbus
-Requires:       python3-feedparser
-Requires:       python3-guessit
-Requires:       python3-notify2
-Requires:       python3-portend
-Requires:       python3-puremagic
-Requires:       python3-sabctools >= 8.0.0
+Requires:       python3dist(chardet)
+Requires:       python3dist(cheetah3)
+Requires:       python3dist(cheroot)
+Requires:       python3dist(cherrypy)
+Requires:       python3dist(configobj)
+Requires:       python3dist(cryptography)
+Requires:       python3dist(dbus-python)
+Requires:       python3dist(feedparser)
+Requires:       python3dist(guessit)
+Requires:       python3dist(notify2)
+Requires:       python3dist(portend)
+Requires:       python3dist(puremagic)
+Requires:       python3dist(sabctools) = 7.1.2
 Requires:       rar
 Requires(pre):  shadow-utils
 
@@ -116,6 +116,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Sat Nov 11 2023 Simone Caronni <negativo17@gmail.com> - 4.1.0-2
+- Adjust requirements.
+
 * Fri Nov 10 2023 Simone Caronni <negativo17@gmail.com> - 4.1.0-1
 - Update to 4.1.0.
 
