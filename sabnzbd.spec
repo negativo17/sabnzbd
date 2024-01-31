@@ -37,7 +37,7 @@ Requires:       python3dist(guessit)
 Requires:       python3dist(notify2)
 Requires:       python3dist(portend)
 Requires:       python3dist(puremagic)
-Requires:       python3dist(sabctools) = 7.1.2
+Requires:       python3dist(sabctools) = 8.1.0
 Requires:       rar
 Requires(pre):  shadow-utils
 
