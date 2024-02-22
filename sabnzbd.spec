@@ -5,7 +5,7 @@
 
 Name:           sabnzbd
 Version:        4.2.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -37,7 +37,7 @@ Requires:       python3dist(guessit)
 Requires:       python3dist(notify2)
 Requires:       python3dist(portend)
 Requires:       python3dist(puremagic)
-Requires:       python3dist(sabctools) = 8.1.0
+Requires:       python3dist(sabctools) = 8.1
 Requires:       rar
 Requires(pre):  shadow-utils
 
@@ -116,6 +116,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Thu Feb 22 2024 Simone Caronni <negativo17@gmail.com> - 4.2.2-2
+- Update requirements.
+
 * Wed Jan 31 2024 Simone Caronni <negativo17@gmail.com> - 4.2.2-1
 - Update to 4.2.2.
 
