@@ -1,11 +1,11 @@
-diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
---- sabnzbd-4.3.1.old/requirements.txt	2024-05-21 15:04:15.756726060 +0200
-+++ sabnzbd-4.3.1/requirements.txt	2024-05-21 15:20:27.830011806 +0200
-@@ -1,73 +1,75 @@
+diff -Naur sabnzbd-4.3.2.old/requirements.txt sabnzbd-4.3.2/requirements.txt
+--- sabnzbd-4.3.2.old/requirements.txt	2024-06-24 09:00:57.784378530 +0200
++++ sabnzbd-4.3.2/requirements.txt	2024-06-24 09:16:38.848883232 +0200
+@@ -1,73 +1,69 @@
  # Main requirements
  # Note that not all sub-dependencies are listed, but only ones we know could cause trouble
--apprise==1.7.6
--sabctools==8.1.0
+-apprise==1.8.0
+-sabctools==8.2.0
 -CT3==3.3.3.post1
 -cffi==1.16.0
 -pycparser==2.22
@@ -28,9 +28,9 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 -portend==3.2.0
 -chardet==5.2.0
 -PySocks==1.7.1
--puremagic==1.22
+-puremagic==1.23
 -guessit==3.8.0
--babelfish==0.6.0
+-babelfish==0.6.1
 -rebulk==3.2.0
 +apprise
 +sabctools
@@ -43,10 +43,7 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 +six
 +cherrypy
 +jaraco.functools
-+jaraco.collections
-+jaraco.text
 +jaraco.classes
-+jaraco.context
 +more-itertools
 +zc.lockfile
 +python-dateutil
@@ -62,26 +59,25 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 +rebulk
  
  # Recent cryptography versions require Rust. If you run into issues compiling this
--# SABnzbd will also work with older pre-Rust versions such as cryptography==3.3.2
--cryptography==42.0.5
-+# SABnzbd will also work with older pre-Rust versions such as cryptography
+ # SABnzbd will also work with older pre-Rust versions such as cryptography==3.3.2
+-cryptography==42.0.7
 +cryptography
  
  # We recommend using "orjson" as it is 2x as fast as "ujson". However, it requires
  # Rust so SABnzbd works just as well with "ujson" or the Python built in "json" module
--ujson==5.9.0
+-ujson==5.10.0
 +ujson
  
  # Windows system integration
 -pywin32==306; sys_platform == 'win32'
--windows-toasts==1.1.0; sys_platform == 'win32' and python_version > '3.8'
+-windows-toasts==1.1.1; sys_platform == 'win32' and python_version > '3.8'
 -winrt-runtime==2.0.1; sys_platform == 'win32' and python_version > '3.8'
 -winrt-Windows.Data.Xml.Dom==2.0.1; sys_platform == 'win32' and python_version > '3.8'
 -winrt-Windows.Foundation==2.0.1; sys_platform == 'win32' and python_version > '3.8'
 -winrt-Windows.Foundation.Collections==2.0.1; sys_platform == 'win32' and python_version > '3.8'
 -winrt-Windows.UI.Notifications==2.0.1; sys_platform == 'win32' and python_version > '3.8'
 +#pywin32==306; sys_platform == 'win32'
-+#windows-toasts==1.1.0; sys_platform == 'win32' and python_version > '3.8'
++#windows-toasts==1.1.1; sys_platform == 'win32' and python_version > '3.8'
 +#winrt-runtime==2.0.1; sys_platform == 'win32' and python_version > '3.8'
 +#winrt-Windows.Data.Xml.Dom==2.0.1; sys_platform == 'win32' and python_version > '3.8'
 +#winrt-Windows.Foundation==2.0.1; sys_platform == 'win32' and python_version > '3.8'
@@ -93,8 +89,6 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 -pyobjc-framework-Cocoa==10.2; sys_platform == 'darwin'
 +#pyobjc-core==10.2; sys_platform == 'darwin'
 +#pyobjc-framework-Cocoa==10.2; sys_platform == 'darwin'
-+#pyobjc-core
-+#pyobjc-framework-Cocoa
  
  # Linux notifications
 -notify2==0.3.1; sys_platform != 'win32' and sys_platform != 'darwin'
@@ -105,12 +99,11 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 -requests-oauthlib==2.0.0
 -PyYAML==6.0.1
 -markdown==3.6
--paho-mqtt==2.0.0
+-paho-mqtt==1.6.1 # Pinned, newer versions don't work with AppRise yet
 +requests
 +requests-oauthlib
 +PyYAML
 +markdown
-+paho-mqtt
  
  # Requests Requirements
 -charset_normalizer==3.3.2
@@ -119,7 +112,7 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 -certifi==2024.2.2
 -oauthlib==3.2.2
 -PyJWT==2.8.0
--blinker==1.8.1
+-blinker==1.8.2
 +charset_normalizer
 +idna
 +urllib3
