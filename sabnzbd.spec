@@ -5,7 +5,7 @@
 
 Name:           sabnzbd
 Version:        4.3.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -15,29 +15,17 @@ Source0:        https://github.com/%{name}/%{name}/archive/%{version}.tar.gz#/%{
 Source1:        config.ini
 Source10:       %{name}.service
 Source11:       %{name}.xml
+Patch0:         sabnzbd-requirements.patch
 
 BuildRequires:  firewalld-filesystem
 BuildRequires:  libappstream-glib
-BuildRequires:  python3
+BuildRequires:  python3-devel
 BuildRequires:  systemd
 BuildRequires:  tar
 
 Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 Requires:       par2cmdline
-Requires:       python3dist(chardet)
-Requires:       python3dist(cheetah3)
-Requires:       python3dist(cheroot)
-Requires:       python3dist(cherrypy)
-Requires:       python3dist(configobj)
-Requires:       python3dist(cryptography)
-Requires:       python3dist(dbus-python)
-Requires:       python3dist(feedparser)
-Requires:       python3dist(guessit)
-Requires:       python3dist(notify2)
-Requires:       python3dist(portend)
-Requires:       python3dist(puremagic)
-Requires:       python3dist(sabctools) = 8.1
 Requires:       rar
 Requires(pre):  shadow-utils
 
@@ -51,6 +39,8 @@ self-analysis tools to verify your setup.
 
 %prep
 %autosetup -n %{name}-%{version}
+%generate_buildrequires
+%pyproject_buildrequires -N requirements.txt
 
 %build
 tools/make_mo.py
@@ -116,6 +106,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Mon Jun 24 2024 Simone Caronni <negativo17@gmail.com> - 4.3.1-2
+- Use python automatic requirements.
+
 * Mon May 13 2024 Simone Caronni <negativo17@gmail.com> - 4.3.1-1
 - Update to 4.3.1.
 

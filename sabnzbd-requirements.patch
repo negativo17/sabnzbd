@@ -1,7 +1,7 @@
 diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
---- sabnzbd-4.3.1.old/requirements.txt	2024-05-13 09:33:02.999392484 +0200
-+++ sabnzbd-4.3.1/requirements.txt	2024-05-21 14:04:31.574939696 +0200
-@@ -1,41 +1,41 @@
+--- sabnzbd-4.3.1.old/requirements.txt	2024-05-21 15:04:15.756726060 +0200
++++ sabnzbd-4.3.1/requirements.txt	2024-05-21 15:20:27.830011806 +0200
+@@ -1,73 +1,75 @@
  # Main requirements
  # Note that not all sub-dependencies are listed, but only ones we know could cause trouble
 -apprise==1.7.6
@@ -34,7 +34,7 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 -rebulk==3.2.0
 +apprise
 +sabctools
-+CT3
++cheetah3
 +cffi
 +pycparser
 +feedparser
@@ -73,13 +73,28 @@ diff -Naur sabnzbd-4.3.1.old/requirements.txt sabnzbd-4.3.1/requirements.txt
 +ujson
  
  # Windows system integration
- pywin32==306; sys_platform == 'win32'
-@@ -49,25 +49,27 @@
+-pywin32==306; sys_platform == 'win32'
+-windows-toasts==1.1.0; sys_platform == 'win32' and python_version > '3.8'
+-winrt-runtime==2.0.1; sys_platform == 'win32' and python_version > '3.8'
+-winrt-Windows.Data.Xml.Dom==2.0.1; sys_platform == 'win32' and python_version > '3.8'
+-winrt-Windows.Foundation==2.0.1; sys_platform == 'win32' and python_version > '3.8'
+-winrt-Windows.Foundation.Collections==2.0.1; sys_platform == 'win32' and python_version > '3.8'
+-winrt-Windows.UI.Notifications==2.0.1; sys_platform == 'win32' and python_version > '3.8'
++#pywin32==306; sys_platform == 'win32'
++#windows-toasts==1.1.0; sys_platform == 'win32' and python_version > '3.8'
++#winrt-runtime==2.0.1; sys_platform == 'win32' and python_version > '3.8'
++#winrt-Windows.Data.Xml.Dom==2.0.1; sys_platform == 'win32' and python_version > '3.8'
++#winrt-Windows.Foundation==2.0.1; sys_platform == 'win32' and python_version > '3.8'
++#winrt-Windows.Foundation.Collections==2.0.1; sys_platform == 'win32' and python_version > '3.8'
++#winrt-Windows.UI.Notifications==2.0.1; sys_platform == 'win32' and python_version > '3.8'
+ 
  # macOS system calls
- pyobjc-core==10.2; sys_platform == 'darwin'
- pyobjc-framework-Cocoa==10.2; sys_platform == 'darwin'
-+pyobjc-core
-+pyobjc-framework-Cocoa
+-pyobjc-core==10.2; sys_platform == 'darwin'
+-pyobjc-framework-Cocoa==10.2; sys_platform == 'darwin'
++#pyobjc-core==10.2; sys_platform == 'darwin'
++#pyobjc-framework-Cocoa==10.2; sys_platform == 'darwin'
++#pyobjc-core
++#pyobjc-framework-Cocoa
  
  # Linux notifications
 -notify2==0.3.1; sys_platform != 'win32' and sys_platform != 'darwin'
