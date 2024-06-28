@@ -1,11 +1,9 @@
 %global user %{name}
 %global group %{name}
 
-%global desktop_id org.sabnzbd.sabnzbd
-
 Name:           sabnzbd
 Version:        4.3.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -15,10 +13,9 @@ Source0:        https://github.com/%{name}/%{name}/archive/%{version}.tar.gz#/%{
 Source1:        config.ini
 Source10:       %{name}.service
 Source11:       %{name}.xml
-Patch0:         sabnzbd-requirements.patch
+Patch0:         %{name}-requirements.patch
 
 BuildRequires:  firewalld-filesystem
-BuildRequires:  libappstream-glib
 BuildRequires:  python3-devel
 BuildRequires:  systemd
 BuildRequires:  tar
@@ -56,7 +53,6 @@ install -m 0644 -p -D %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/config.ini
 install -m 0644 -p -D %{SOURCE10} %{buildroot}%{_unitdir}/%{name}.service
 install -m 0644 -p -D %{SOURCE11} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}.xml
 install -m 0644 -p -D linux/sabnzbd.bash-completion %{buildroot}%{_sysconfdir}/bash_completion.d/sabnzbd
-install -m 0644 -p -D linux/%{desktop_id}.appdata.xml %{buildroot}%{_metainfodir}/%{desktop_id}.appdata.xml
 
 # Always invoke Python 3
 find %{buildroot} -name "*.py" -exec sed -i \
@@ -65,13 +61,6 @@ find %{buildroot} -name "*.py" -exec sed -i \
 # rpmlint fixes
 find %{buildroot} \( -name "*.js" -o -name "*.css" -o -name "*.txt  " \) -exec chmod 644 {} \;
 chmod 755 $(grep -RH '/usr/bin/' %{buildroot}%{_datadir}/%{name} | cut -d: -f1)
-
-
-%check
-%if 0%{?fedora}
-# Url validator broken on el7, 8 and 9: https://bugzilla.redhat.com/show_bug.cgi?id=2119708
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{desktop_id}.appdata.xml
-%endif
 
 %find_lang SABnzbd
 
@@ -99,13 +88,15 @@ exit 0
 %dir %attr(750,%{user},%{group}) %{_sysconfdir}/%{name}
 %config(noreplace) %attr(644,%{user},%{group}) %{_sysconfdir}/%{name}/config.ini
 %{_datadir}/%{name}
-%{_metainfodir}/%{desktop_id}.appdata.xml
 %{_prefix}/lib/firewalld/services/%{name}.xml
 %{_sysconfdir}/bash_completion.d/sabnzbd
 %{_unitdir}/%{name}.service
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Fri Jun 28 2024 Simone Caronni <negativo17@gmail.com> - 4.3.2-2
+- Drop Appstream metadata.
+
 * Mon Jun 24 2024 Simone Caronni <negativo17@gmail.com> - 4.3.2-1
 - Update to 4.3.2.
 
