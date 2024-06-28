@@ -1,0 +1,11 @@
+diff -Naur sabnzbd-4.3.2.old/linux/org.sabnzbd.sabnzbd.appdata.xml sabnzbd-4.3.2/linux/org.sabnzbd.sabnzbd.appdata.xml
+--- sabnzbd-4.3.2.old/linux/org.sabnzbd.sabnzbd.appdata.xml	2024-06-28 14:29:48.854147236 +0200
++++ sabnzbd-4.3.2/linux/org.sabnzbd.sabnzbd.appdata.xml	2024-06-28 14:31:57.676151146 +0200
+@@ -2,6 +2,7 @@
+ <!-- Copyright 2022-2024 by The SABnzbd-Team (sabnzbd.org) -->
+ <component type="desktop-application">
+   <id>org.sabnzbd.sabnzbd</id>
++  <icon type="local">/usr/share/pixmaps/logo-sabnzbd.png</icon>
+   <metadata_license>MIT</metadata_license>
+   <name>SABnzbd</name>
+   <summary>Free and easy binary newsreader</summary>
