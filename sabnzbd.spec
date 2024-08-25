@@ -2,8 +2,8 @@
 %global group %{name}
 
 Name:           sabnzbd
-Version:        4.3.2
-Release:        2%{?dist}
+Version:        4.3.3
+Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -94,6 +94,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Sun Aug 25 2024 Simone Caronni <negativo17@gmail.com> - 4.3.3-1
+- Update to 4.3.3.
+
 * Fri Jun 28 2024 Simone Caronni <negativo17@gmail.com> - 4.3.2-2
 - Drop Appstream metadata.
 
