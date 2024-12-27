@@ -2,7 +2,7 @@
 %global group %{name}
 
 Name:           sabnzbd
-Version:        4.4.0
+Version:        4.4.1
 Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
@@ -94,6 +94,9 @@ exit 0
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Fri Dec 27 2024 Simone Caronni <negativo17@gmail.com> - 4.4.1-1
+- Update to 4.4.1.
+
 * Fri Dec 13 2024 Simone Caronni <negativo17@gmail.com> - 4.4.0-1
 - Update to 4.4.0.
 
