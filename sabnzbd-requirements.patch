@@ -1,6 +1,6 @@
 diff -Naur sabnzbd-4.5.1.old/requirements.txt sabnzbd-4.5.1/requirements.txt
 --- sabnzbd-4.5.1.old/requirements.txt	2025-04-16 14:34:05.937929204 +0200
-+++ sabnzbd-4.5.1/requirements.txt	2025-04-19 19:52:36.063863587 +0200
++++ sabnzbd-4.5.1/requirements.txt	2025-04-20 11:42:07.609615404 +0200
 @@ -1,79 +1,72 @@
  # Main requirements
  # Note that not all sub-dependencies are listed, but only ones we know could cause trouble
@@ -36,7 +36,7 @@ diff -Naur sabnzbd-4.5.1.old/requirements.txt sabnzbd-4.5.1/requirements.txt
 -rebulk==3.2.0
 +apprise
 +sabctools
-+cheetah3
++ct3
 +cffi
 +pycparser
 +feedparser
