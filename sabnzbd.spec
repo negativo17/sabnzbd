@@ -2,7 +2,7 @@
 %global group %{name}
 
 Name:           sabnzbd
-Version:        4.5.3
+Version:        4.5.5
 Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
@@ -24,7 +24,6 @@ Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 Requires:       par2cmdline
 Requires:       rar
-Requires(pre):  shadow-utils
 
 %description
 It's totally free, easy to use, and works practically everywhere. SABnzbd makes
@@ -62,14 +61,14 @@ find %{buildroot} -name "*.py" -exec sed -i \
 find %{buildroot} \( -name "*.js" -o -name "*.css" -o -name "*.txt  " \) -exec chmod 644 {} \;
 chmod 755 $(grep -RH '/usr/bin/' %{buildroot}%{_datadir}/%{name} | cut -d: -f1)
 
-%find_lang SABnzbd
+# Create a sysusers.d config file
+cat >%{name}.sysusers.conf <<EOF
+u %{name} - 'SABnzbd' %{_sharedstatedir}/%{name} -
+EOF
 
-%pre
-getent group %{group} >/dev/null || groupadd -r %{group}
-getent passwd %{user} >/dev/null || \
-    useradd -r -g %{group} -d %{_sharedstatedir}/%{name} -s /sbin/nologin \
-    -c "%{name}" %{user}
-exit 0
+install -m0644 -D %{name}.sysusers.conf %{buildroot}%{_sysusersdir}/%{name}.conf
+
+%find_lang SABnzbd
 
 %post
 %systemd_post %{name}.service
@@ -90,10 +89,15 @@ exit 0
 %{_datadir}/%{name}
 %{_prefix}/lib/firewalld/services/%{name}.xml
 %{_sysconfdir}/bash_completion.d/sabnzbd
+%{_sysusersdir}/%{name}.conf
 %{_unitdir}/%{name}.service
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Thu Nov 20 2025 Simone Caronni <negativo17@gmail.com> - 4.5.5-1
+- Update to 4.5.5.
+- Switch to sysusers.d mechanism.
+
 * Tue Sep 02 2025 Simone Caronni <negativo17@gmail.com> - 4.5.3-1
 - Update to 4.5.3.
 
