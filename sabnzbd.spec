@@ -3,7 +3,7 @@
 
 Name:           sabnzbd
 Version:        4.5.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -23,6 +23,7 @@ BuildRequires:  tar
 Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 Requires:       par2cmdline
+Requires:       python3-rarfile
 Requires:       rar
 
 %description
@@ -94,6 +95,9 @@ install -m0644 -D %{name}.sysusers.conf %{buildroot}%{_sysusersdir}/%{name}.conf
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Mon Apr 27 2026 Simone Caronni <negativo17@gmail.com> - 4.5.5-2
+- Require python3-rarfile.
+
 * Thu Nov 20 2025 Simone Caronni <negativo17@gmail.com> - 4.5.5-1
 - Update to 4.5.5.
 - Switch to sysusers.d mechanism.
