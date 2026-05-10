@@ -2,8 +2,8 @@
 %global group %{name}
 
 Name:           sabnzbd
-Version:        4.5.5
-Release:        2%{?dist}
+Version:        5.0.1
+Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -11,9 +11,10 @@ BuildArch:      noarch
 
 Source0:        https://github.com/%{name}/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:        config.ini
+# Adjusted requirements. Simpler than making a patch:
+Source2:        %{name}-requirements.txt
 Source10:       %{name}.service
 Source11:       %{name}.xml
-Patch0:         %{name}-requirements.patch
 
 BuildRequires:  firewalld-filesystem
 BuildRequires:  python3-devel
@@ -36,6 +37,7 @@ self-analysis tools to verify your setup.
 
 %prep
 %autosetup -n %{name}-%{version}
+cp -f %{SOURCE2} requirements.txt
 %generate_buildrequires
 %pyproject_buildrequires -N requirements.txt
 
@@ -95,6 +97,9 @@ install -m0644 -D %{name}.sysusers.conf %{buildroot}%{_sysusersdir}/%{name}.conf
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Sun May 10 2026 Simone Caronni <negativo17@gmail.com> - 5.0.1-1
+- Update to 5.0.1.
+
 * Mon Apr 27 2026 Simone Caronni <negativo17@gmail.com> - 4.5.5-2
 - Require python3-rarfile.
 
