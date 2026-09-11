@@ -3,7 +3,7 @@
 
 Name:           sabnzbd
 Version:        5.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -11,8 +11,6 @@ BuildArch:      noarch
 
 Source0:        https://github.com/%{name}/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:        config.ini
-# Adjusted requirements. Simpler than making a patch:
-Source2:        %{name}-requirements.txt
 Source10:       %{name}.service
 Source11:       %{name}.xml
 
@@ -37,7 +35,8 @@ self-analysis tools to verify your setup.
 
 %prep
 %autosetup -n %{name}-%{version}
-cp -f %{SOURCE2} requirements.txt
+sed -i -E '/^sabctools/!s/==[^;#[:space:]]+//' requirements.txt
+
 %generate_buildrequires
 %pyproject_buildrequires -N requirements.txt
 
@@ -97,6 +96,9 @@ install -m0644 -D %{name}.sysusers.conf %{buildroot}%{_sysusersdir}/%{name}.conf
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Fri Sep 11 2026 Simone Caronni <negativo17@gmail.com> - 5.1.3-2
+- Derive the requirements from the upstream file instead of carrying a copy.
+
 * Wed Sep 09 2026 Simone Caronni <negativo17@gmail.com> - 5.1.3-1
 - Update to 5.1.3.
 
