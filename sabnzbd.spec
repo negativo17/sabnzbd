@@ -3,7 +3,7 @@
 
 Name:           sabnzbd
 Version:        5.1.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
 URL:            https://sabnzbd.org/
@@ -16,14 +16,44 @@ Source11:       %{name}.xml
 
 BuildRequires:  firewalld-filesystem
 BuildRequires:  python3-devel
+BuildRequires:  python3-packaging
 BuildRequires:  systemd
 BuildRequires:  tar
 
 Requires:       firewalld-filesystem
 Requires(post): firewalld-filesystem
 Requires:       par2cmdline
-Requires:       python3-rarfile
 Requires:       rar
+
+Requires:       python3dist(babelfish)
+Requires:       python3dist(cffi)
+Requires:       python3dist(charset-normalizer)
+Requires:       python3dist(cheroot)
+Requires:       python3dist(cherrypy)
+Requires:       python3dist(configobj)
+Requires:       python3dist(cryptography)
+Requires:       python3dist(ct3)
+Requires:       python3dist(feedparser)
+Requires:       python3dist(guessit)
+Requires:       python3dist(hachoir)
+Requires:       python3dist(idna)
+Requires:       python3dist(jaraco-classes)
+Requires:       python3dist(jaraco-collections)
+Requires:       python3dist(jaraco-context)
+Requires:       python3dist(jaraco-functools)
+Requires:       python3dist(jaraco-text)
+Requires:       python3dist(more-itertools)
+Requires:       python3dist(portend)
+Requires:       python3dist(puremagic)
+Requires:       python3dist(pycparser)
+Requires:       python3dist(pysocks)
+Requires:       python3dist(pytz)
+Requires:       python3dist(rarfile)
+Requires:       python3dist(sabctools) = 9.6.3
+Requires:       python3dist(sgmllib3k)
+Requires:       python3dist(six)
+Requires:       python3dist(tempora)
+Requires:       python3dist(zc-lockfile)
 
 %description
 It's totally free, easy to use, and works practically everywhere. SABnzbd makes
@@ -96,6 +126,9 @@ install -m0644 -D %{name}.sysusers.conf %{buildroot}%{_sysusersdir}/%{name}.conf
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Fri Sep 11 2026 Simone Caronni <negativo17@gmail.com> - 5.1.3-3
+- Fix python runtime dependencies.
+
 * Fri Sep 11 2026 Simone Caronni <negativo17@gmail.com> - 5.1.3-2
 - Derive the requirements from the upstream file instead of carrying a copy.
 
