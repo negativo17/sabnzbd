@@ -11,6 +11,7 @@ cryptography
 CT3
 feedparser
 guessit
+hachoir
 idna
 jaraco.classes
 jaraco.collections
@@ -19,9 +20,7 @@ jaraco.functools
 jaraco.text
 markdown
 more-itertools
-notify2
 oauthlib
-orjson
 paho-mqtt
 portend
 puremagic
@@ -35,7 +34,7 @@ rarfile
 rebulk
 requests
 requests-oauthlib
-sabctools==9.4.0
+sabctools==9.6.3
 sgmllib3k
 six
 tempora

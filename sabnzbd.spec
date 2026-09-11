@@ -2,7 +2,7 @@
 %global group %{name}
 
 Name:           sabnzbd
-Version:        5.0.4
+Version:        5.1.3
 Release:        1%{?dist}
 Summary:        The automated Usenet download tool
 License:        GPLv2+
@@ -97,6 +97,9 @@ install -m0644 -D %{name}.sysusers.conf %{buildroot}%{_sysusersdir}/%{name}.conf
 %attr(750,%{user},%{group}) %{_localstatedir}/log/%{name}
 
 %changelog
+* Wed Sep 09 2026 Simone Caronni <negativo17@gmail.com> - 5.1.3-1
+- Update to 5.1.3.
+
 * Fri Jul 03 2026 Simone Caronni <negativo17@gmail.com> - 5.0.4-1
 - Update to 5.0.4.
 
